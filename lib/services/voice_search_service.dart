@@ -85,12 +85,12 @@ class VoiceSearchService {
 
   List<String> getVoiceCommands() {
     return [
-      'How to treat crop diseases?',
-      'Best pest control methods',
-      'Soil management tips',
-      'Fertilization guidelines',
-      'Irrigation scheduling',
-      'Crop rotation benefits',
+      'How to weed maize?',
+      'When to harvest beans?',
+      'How to dry cassava?',
+      'How to control cassava mosaic?',
+      'How to control bean weevils?',
+      'How to avoid red color on bean leaves?',
     ];
   }
 }

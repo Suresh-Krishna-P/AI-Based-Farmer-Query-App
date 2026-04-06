@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:ai_based_farmer_query_app/theme/app_colors.dart';
 
-class SearchResultItem extends StatelessWidget {
+class SearchResultItem extends StatefulWidget {
   final String title;
   final String description;
   final String category;
@@ -15,72 +16,116 @@ class SearchResultItem extends StatelessWidget {
   });
 
   @override
+  State<SearchResultItem> createState() => _SearchResultItemState();
+}
+
+class _SearchResultItemState extends State<SearchResultItem> with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _fadeAnimation;
+  late Animation<Offset> _slideAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 500),
+    );
+    _fadeAnimation = CurvedAnimation(parent: _controller, curve: Curves.easeIn);
+    _slideAnimation = Tween<Offset>(begin: const Offset(0.05, 0), end: Offset.zero).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic),
+    );
+    _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
-      elevation: 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(12),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Category and Title
-              Row(
+    return FadeTransition(
+      opacity: _fadeAnimation,
+      child: SlideTransition(
+        position: _slideAnimation,
+        child: Container(
+          margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 4),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.03),
+                blurRadius: 10,
+                offset: const Offset(0, 4),
+              ),
+            ],
+          ),
+          child: InkWell(
+            onTap: widget.onTap,
+            borderRadius: BorderRadius.circular(16),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: _getCategoryColor(category).withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: Text(
-                      category,
-                      style: TextStyle(
-                        fontSize: 10,
-                        color: _getCategoryColor(category),
-                        fontWeight: FontWeight.bold,
+                  // Category and Title
+                  Row(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: _getCategoryColor(widget.category).withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Text(
+                          widget.category.toUpperCase(),
+                          style: TextStyle(
+                            fontSize: 9,
+                            color: _getCategoryColor(widget.category),
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 0.5,
+                          ),
+                        ),
                       ),
+                      const Spacer(),
+                      const Icon(
+                        Icons.chevron_right_rounded,
+                        size: 18,
+                        color: Colors.grey,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  
+                  // Title
+                  Text(
+                    widget.title,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.primaryBlue,
+                      letterSpacing: -0.5,
                     ),
                   ),
-                  const Spacer(),
-                  const Icon(
-                    Icons.arrow_forward_ios,
-                    size: 14,
-                    color: Colors.grey,
+                  const SizedBox(height: 8),
+                  
+                  // Description
+                  Text(
+                    widget.description,
+                    style: const TextStyle(
+                      fontSize: 13,
+                      color: Colors.black54,
+                      height: 1.5,
+                    ),
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ],
               ),
-              const SizedBox(height: 8),
-              
-              // Title
-              Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black87,
-                ),
-              ),
-              const SizedBox(height: 8),
-              
-              // Description
-              Text(
-                description,
-                style: const TextStyle(
-                  fontSize: 14,
-                  color: Colors.black54,
-                  height: 1.4,
-                ),
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ],
+            ),
           ),
         ),
       ),
@@ -91,21 +136,22 @@ class SearchResultItem extends StatelessWidget {
     switch (category.toLowerCase()) {
       case 'crop disease':
       case 'disease':
-        return Colors.red;
+        return Colors.redAccent;
       case 'pest management':
       case 'pest':
-        return Colors.orange;
+        return Colors.orangeAccent;
       case 'soil management':
       case 'soil':
         return Colors.brown;
       case 'fertilization':
       case 'fertilizer':
+      case 'recommendation':
         return Colors.green;
       case 'irrigation':
-        return Colors.blue;
+        return Colors.blueAccent;
       case 'general':
       default:
-        return Colors.grey;
+        return Colors.blueGrey;
     }
   }
-}
+}

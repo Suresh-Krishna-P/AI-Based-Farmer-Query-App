@@ -4,6 +4,8 @@ import 'package:ai_based_farmer_query_app/services/text_search_service.dart';
 import 'package:ai_based_farmer_query_app/services/rag_service.dart';
 import 'package:ai_based_farmer_query_app/ui/widgets/search_result_item.dart';
 import 'package:ai_based_farmer_query_app/ui/widgets/loading_indicator.dart';
+import 'package:ai_based_farmer_query_app/theme/app_colors.dart';
+import 'package:provider/provider.dart';
 
 class TextSearchScreen extends StatefulWidget {
   const TextSearchScreen({super.key});
@@ -37,13 +39,15 @@ class _TextSearchScreenState extends State<TextSearchScreen> {
 
     try {
       final ragService = Provider.of<RAGService>(context, listen: false);
-      final results = await ragService.search(query);
+      final results = await ragService.searchWithExternalData(query, cropType: 'Wheat', region: 'India', location: 'Delhi');
       
+      if (!mounted) return;
       setState(() {
         _searchResults = results;
         _isLoading = false;
       });
     } catch (e) {
+      if (!mounted) return;
       setState(() {
         _errorMessage = 'Error performing search: $e';
         _isLoading = false;
@@ -54,32 +58,108 @@ class _TextSearchScreenState extends State<TextSearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.secondaryGray,
       appBar: AppBar(
-        title: const Text('Text Search'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pop(context),
-        ),
+        title: const Text('Knowledge Finder'),
+        centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            // Search Input Section
-            _buildSearchInput(),
-            
-            const SizedBox(height: 20),
-            
-            // Suggestions Section
-            _buildSuggestions(),
-            
-            const SizedBox(height: 20),
-            
-            // Results Section
-            Expanded(
-              child: _buildResults(),
+      body: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
+        slivers: [
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Search Input Section
+                  _buildSearchInput(),
+                  
+                  const SizedBox(height: 24),
+                  
+                  // Suggestions Section
+                  _buildSuggestions(),
+                ],
+              ),
             ),
+          ),
+          
+          // Results Header
+          if (_searchResults.isNotEmpty)
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+                child: Row(
+                  children: [
+                    const Icon(Icons.auto_graph, size: 14, color: Colors.grey),
+                    const SizedBox(width: 8),
+                    Text(
+                      'Found ${_searchResults.length} matching records',
+                      style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.grey, letterSpacing: 0.5),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+          // Results Section
+          _buildResultsSliver(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildResultsSliver() {
+    if (_isLoading) {
+      return const SliverFillRemaining(
+        child: Center(child: CircularProgressIndicator(color: AppColors.primaryBlue)),
+      );
+    }
+
+    if (_errorMessage.isNotEmpty) {
+      return SliverToBoxAdapter(
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            children: [
+              const Icon(Icons.error_outline, color: Colors.redAccent, size: 40),
+              const SizedBox(height: 12),
+              Text(_errorMessage, style: const TextStyle(color: Colors.redAccent), textAlign: TextAlign.center),
+            ],
+          ),
+        ),
+      );
+    }
+
+    if (_searchResults.isEmpty && _searchController.text.isNotEmpty) {
+      return SliverFillRemaining(
+        hasScrollBody: false,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.search_off_rounded, size: 80, color: Colors.grey.withOpacity(0.3)),
+            const SizedBox(height: 16),
+            const Text('No records found', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black26)),
+            const Text('Try broader keywords (e.g. Rice)', style: TextStyle(color: Colors.black26)),
           ],
+        ),
+      );
+    }
+
+    return SliverPadding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      sliver: SliverList(
+        delegate: SliverChildBuilderDelegate(
+          (context, index) {
+            final result = _searchResults[index];
+            return SearchResultItem(
+              title: result['title'] ?? 'Query Result',
+              description: result['content'] ?? result['description'] ?? '',
+              category: result['category'] ?? 'General',
+              onTap: () => _showResultDetails(result),
+            );
+          },
+          childCount: _searchResults.length,
         ),
       ),
     );
@@ -89,191 +169,138 @@ class _TextSearchScreenState extends State<TextSearchScreen> {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.black12,
-            blurRadius: 4,
-            offset: const Offset(0, 2),
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 20,
+            offset: const Offset(0, 10),
           ),
         ],
       ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        child: Row(
-          children: [
-            const Icon(
-              Icons.search,
-              color: Colors.grey,
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: TextField(
-                controller: _searchController,
-                focusNode: _searchFocusNode,
-                decoration: const InputDecoration(
-                  hintText: 'Type your farming query here...',
-                  border: InputBorder.none,
-                  isDense: true,
-                ),
-                onSubmitted: _performSearch,
-              ),
-            ),
-            if (_searchController.text.isNotEmpty)
-              IconButton(
-                icon: const Icon(
-                  Icons.clear,
-                  color: Colors.grey,
-                ),
+      child: TextField(
+        controller: _searchController,
+        focusNode: _searchFocusNode,
+        style: const TextStyle(fontWeight: FontWeight.w600, color: AppColors.primaryBlue),
+        decoration: InputDecoration(
+          hintText: 'Ask about crops, pests, or soil...',
+          hintStyle: const TextStyle(color: Colors.black26, fontWeight: FontWeight.normal),
+          prefixIcon: const Icon(Icons.search_rounded, color: AppColors.primaryBlue),
+          suffixIcon: _searchController.text.isNotEmpty 
+            ? IconButton(
+                icon: const Icon(Icons.close_rounded, color: Colors.grey),
                 onPressed: () {
                   _searchController.clear();
-                  setState(() {
-                    _searchResults = [];
-                    _errorMessage = '';
-                  });
+                  setState(() { _searchResults = []; _errorMessage = ''; });
                 },
+              )
+            : IconButton(
+                icon: const Icon(Icons.arrow_forward_rounded, color: AppColors.primaryBlue),
+                onPressed: () => _performSearch(_searchController.text),
               ),
-            IconButton(
-              icon: const Icon(
-                Icons.send,
-                color: Color(0xFF2E7D32),
-              ),
-              onPressed: () => _performSearch(_searchController.text),
-            ),
-          ],
+          border: InputBorder.none,
+          contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
         ),
+        onSubmitted: _performSearch,
       ),
     );
   }
 
   Widget _buildSuggestions() {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 4),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            'Popular Queries',
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Colors.black87,
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          'SMART SUGGESTIONS',
+          style: TextStyle(
+            fontSize: 10,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 1.5,
+            color: Colors.grey,
           ),
-          const SizedBox(height: 12),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: [
-              _buildSuggestionChip('How to treat powdery mildew?'),
-              _buildSuggestionChip('Best fertilizer for tomatoes'),
-              _buildSuggestionChip('Pest control methods'),
-              _buildSuggestionChip('Soil preparation techniques'),
-              _buildSuggestionChip('Crop rotation benefits'),
-              _buildSuggestionChip('Irrigation scheduling'),
-            ],
-          ),
-        ],
-      ),
+        ),
+        const SizedBox(height: 16),
+        Wrap(
+          spacing: 12,
+          runSpacing: 12,
+          children: [
+            _buildSuggestionChip('Treat tomato late blight'),
+            _buildSuggestionChip('High yield rice'),
+            _buildSuggestionChip('Soil NPK for Mango'),
+            _buildSuggestionChip('Cotton pests'),
+            _buildSuggestionChip('HD-2967 Wheat'),
+          ],
+        ),
+      ],
     );
   }
 
   Widget _buildSuggestionChip(String suggestion) {
-    return ActionChip(
-      label: Text(
-        suggestion,
-        style: const TextStyle(fontSize: 12),
-      ),
-      onPressed: () {
+    return InkWell(
+      onTap: () {
         _searchController.text = suggestion;
         _performSearch(suggestion);
       },
-      backgroundColor: const Color(0xFFE8F5E9),
-      labelStyle: const TextStyle(
-        color: Color(0xFF2E7D32),
-        fontSize: 12,
-      ),
-    );
-  }
-
-  Widget _buildResults() {
-    if (_isLoading) {
-      return const LoadingIndicator();
-    }
-
-    if (_errorMessage.isNotEmpty) {
-      return Center(
+      borderRadius: BorderRadius.circular(12),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: Colors.black.withOpacity(0.05)),
+        ),
         child: Text(
-          _errorMessage,
-          style: const TextStyle(color: Colors.red),
-          textAlign: TextAlign.center,
+          suggestion,
+          style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: AppColors.primaryBlue),
         ),
-      );
-    }
-
-    if (_searchResults.isEmpty) {
-      return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(
-              Icons.search_off,
-              size: 64,
-              color: Colors.grey,
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              'No results found',
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.black54,
-              ),
-            ),
-            const SizedBox(height: 8),
-            const Text(
-              'Try searching with different keywords',
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.black38,
-              ),
-            ),
-          ],
-        ),
-      );
-    }
-
-    return ListView.builder(
-      padding: const EdgeInsets.only(bottom: 16),
-      itemCount: _searchResults.length,
-      itemBuilder: (context, index) {
-        final result = _searchResults[index];
-        return SearchResultItem(
-          title: result['title'] ?? 'Query Result',
-          description: result['content'] ?? result['description'] ?? '',
-          category: result['category'] ?? 'General',
-          onTap: () {
-            // Navigate to detailed view or show dialog
-            _showResultDetails(result);
-          },
-        );
-      },
+      ),
     );
   }
 
   void _showResultDetails(Map<String, dynamic> result) {
-    showDialog(
+    showModalBottomSheet(
       context: context,
-      builder: (context) => AlertDialog(
-        title: Text(result['title'] ?? 'Query Result'),
-        content: SingleChildScrollView(
-          child: Text(result['content'] ?? result['description'] ?? ''),
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => Container(
+        height: MediaQuery.of(context).size.height * 0.7,
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30)),
         ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Close'),
-          ),
-        ],
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Center(child: Container(width: 40, height: 4, decoration: BoxDecoration(color: Colors.grey[300], borderRadius: BorderRadius.circular(2)))),
+            const SizedBox(height: 24),
+            Text(result['title'] ?? 'Record Detail', style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: AppColors.primaryBlue)),
+            const SizedBox(height: 8),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+              decoration: BoxDecoration(color: AppColors.primaryBlue.withOpacity(0.1), borderRadius: BorderRadius.circular(8)),
+              child: Text(result['category']?.toUpperCase() ?? 'GENERAL', style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: AppColors.primaryBlue)),
+            ),
+            const SizedBox(height: 24),
+            Expanded(
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Text(
+                  result['content'] ?? result['description'] ?? '',
+                  style: const TextStyle(fontSize: 15, height: 1.8, color: Colors.black87),
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Got it'),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

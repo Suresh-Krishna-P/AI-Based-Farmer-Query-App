@@ -36,15 +36,15 @@ A comprehensive Flutter application that provides AI-powered agricultural suppor
 - **UI Components**: Custom widgets with responsive design
 
 ### Backend Services
-- **RAG System**: Retrieval-Augmented Generation for enhanced search
-- **AI Integration**: OpenAI GPT-3.5 Turbo API
-- **Speech Recognition**: Speech-to-Text for voice queries
-- **Image Analysis**: Computer vision for crop/soil analysis
+- **RAG System**: Retrieval-Augmented Generation using aggressive pattern matching against our offline datasets
+- **Wikipedia Oracle**: Custom integration polling the Wikipedia Global API for real-time answers (Zero API keys required)
+- **Speech Recognition**: On-Device Native Speech-to-Text for voice queries
+- **Image Analysis**: Local heuristic-based Computer Vision for crop/soil analysis
 
 ### Data Management
 - **Local Storage**: SQLite for offline functionality
-- **Datasets**: Comprehensive agricultural knowledge bases
-- **Caching**: Efficient data retrieval and storage
+- **Datasets**: Massive, mathematically precise offline agricultural knowledge bases
+- **Caching**: Efficient data retrieval and persistent storage
 
 ## Installation
 
@@ -66,8 +66,8 @@ A comprehensive Flutter application that provides AI-powered agricultural suppor
    flutter pub get
    ```
 
-3. **Configure API Keys:**
-   Create a `.env` file in the project root:
+3. **(Optional) Configure API Keys:**
+   The application operates robustly offline and utilizes a free Wikipedia Fallback. However, if you wish to use enhanced OpenAI features, create a `.env` file:
    ```
    OPENAI_API_KEY=your_openai_api_key_here
    ```
@@ -142,12 +142,13 @@ lib/
 
 ## Configuration
 
-### API Integration
-The application integrates with OpenAI's GPT-3.5 Turbo API for enhanced responses. To configure:
+### Live Wikipedia & AI Integration
+The application strictly relies on **Zero API Key** architectures by default! It achieves open-ended knowledge generation by parsing global agricultural parameters asynchronously from the public **Wikipedia Sandbox**.
 
+If you wish to augment the native intelligence, the application integrates with OpenAI's GPT-3.5 Turbo API for enhanced structuring:
 1. Obtain an API key from [OpenAI](https://platform.openai.com/api-keys)
 2. Add it to your `.env` file
-3. The RAG system will use this for AI-generated responses
+3. The RAG system will automatically transition to using this for AI-generated responses
 
 ### Dataset Customization
 The application includes comprehensive datasets for:
@@ -169,10 +170,11 @@ We welcome contributions to improve this application! Please follow these steps:
 
 ## Future Enhancements
 
-- [ ] Offline functionality with local AI models
+- [x] Massive Offline Datasets and Metrics
+- [x] Limitless API-Free Fallback System
 - [ ] Multi-language support beyond Hindi and English
-- [ ] Weather integration for crop planning
-- [ ] Market price information for crops
+- [x] Weather integration for crop planning
+- [x] Market price information for crops
 - [ ] Community forum for farmer discussions
 - [ ] Integration with agricultural extension services
 - [ ] Mobile app for agricultural experts

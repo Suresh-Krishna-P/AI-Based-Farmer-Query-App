@@ -1,3 +1,7 @@
+/// Pest Management Dataset
+class PestManagementDataset {
+  /// Comprehensive pest management information
+  static const String pestManagementData = """
 # Pest Management Dataset
 
 ## 1. Armyworm
@@ -39,3 +43,97 @@
 - **Identification**: Large insects with long jumping legs, usually green or brown.
 - **Damage**: They feed on various crops and can strip entire fields bare.
 - **Control Methods**: Use insecticides and encourage natural predators such as birds.
+""";
+
+  /// Get pest management data as a map
+  static Map<String, dynamic> getPestManagementData() {
+    return {
+      'armyworm': {
+        'identification': 'Caterpillars that are usually green or brown, with stripes running along their bodies',
+        'damage': 'Feed on a variety of crops, including corn and grass, causing significant damage to young plants',
+        'control_methods': [
+          'Use insecticides',
+          'Biological control agents like parasitic wasps',
+          'Maintain good crop management practices',
+        ],
+      },
+      'stemborers': {
+        'identification': 'Larvae bore into the stems of plants causing wilting, typically yellowish and cylindrical',
+        'damage': 'Stunted growth, wilting, and potential plant death',
+        'control_methods': [
+          'Use resistant plant varieties',
+          'Practice crop rotation',
+        ],
+      },
+      'whiteflies': {
+        'identification': 'Small flying insects found on leaf undersides, white and moth-like',
+        'damage': 'Yellowing of leaves and promotion of sooty mold growth',
+        'control_methods': [
+          'Use insecticidal soaps',
+          'Yellow sticky traps',
+          'Introduce natural predators like ladybugs',
+        ],
+      },
+      'mites': {
+        'identification': 'Tiny pests found on leaf undersides, usually red or green',
+        'damage': 'Suck plant juices, leading to leaf discoloration and damage',
+        'control_methods': [
+          'Apply miticides',
+          'Encourage beneficial insects',
+        ],
+      },
+      'bollworms': {
+        'identification': 'Larvae of moths, usually green or brown, found inside cotton bolls',
+        'damage': 'Feed on cotton bolls, significantly reducing yields',
+        'control_methods': [
+          'Use Bacillus thuringiensis (Bt) cotton',
+          'Apply insecticides when necessary',
+        ],
+      },
+      'leafhoppers': {
+        'identification': 'Small, wedge-shaped insects that jump when disturbed, often green or yellow',
+        'damage': 'Leaf yellowing and stunted growth due to sap feeding',
+        'control_methods': [
+          'Use insecticidal soaps',
+          'Maintain healthy crops to resist infestations',
+        ],
+      },
+      'fruit_flies': {
+        'identification': 'Small flies that hover around fruits, with red eyes and yellow-brown bodies',
+        'damage': 'Larvae feed on fruits, leading to decay and loss of marketability',
+        'control_methods': [
+          'Use protein bait and traps',
+          'Proper sanitation',
+        ],
+      },
+      'grasshoppers': {
+        'identification': 'Large insects with long jumping legs, usually green or brown',
+        'damage': 'Feed on various crops and can strip entire fields bare',
+        'control_methods': [
+          'Use insecticides',
+          'Encourage natural predators such as birds',
+        ],
+      },
+    };
+  }
+
+  /// Get specific pest information
+  static Map<String, dynamic> getPestInfo(String pestName) {
+    final data = getPestManagementData();
+    return data[pestName.toLowerCase()] ?? {};
+  }
+
+  /// Get all pest names
+  static List<String> getPestNames() {
+    return [
+      'Armyworm',
+      'Stemborers', 
+      'Whiteflies',
+      'Mites',
+      'Bollworms',
+      'Leafhoppers',
+      'Fruit Flies',
+      'Grasshoppers',
+    ];
+  }
+}

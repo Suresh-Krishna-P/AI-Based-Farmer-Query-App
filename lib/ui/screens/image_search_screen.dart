@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:ai_based_farmer_query_app/services/image_search_service.dart';
 import 'package:ai_based_farmer_query_app/services/rag_service.dart';
 import 'package:ai_based_farmer_query_app/ui/widgets/search_result_item.dart';
 import 'package:ai_based_farmer_query_app/ui/widgets/loading_indicator.dart';
+import 'package:ai_based_farmer_query_app/theme/app_colors.dart';
 import 'package:provider/provider.dart';
-import 'dart:io';
+import 'dart:io' show File;
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class ImageSearchScreen extends StatefulWidget {
   const ImageSearchScreen({super.key});
@@ -14,24 +17,80 @@ class ImageSearchScreen extends StatefulWidget {
   State<ImageSearchScreen> createState() => _ImageSearchScreenState();
 }
 
-class _ImageSearchScreenState extends State<ImageSearchScreen> {
-  File? _selectedImage;
+class _ImageSearchScreenState extends State<ImageSearchScreen> with SingleTickerProviderStateMixin {
+  XFile? _selectedImage;
   bool _isAnalyzing = false;
   List<dynamic> _searchResults = [];
   String _errorMessage = '';
   String _analysisResult = '';
+  int _fileSize = 0;
+  String? _simulatedLabel;
+  late AnimationController _animationController;
+
+  final List<String> _simulatedDiseases = [
+    'Apple : Scab',
+    'Tomato : Late Blight',
+    'Corn : Common Rust',
+    'Grape : Black Rot',
+    'Orange : Haunglongbing',
+    'Potato : Early Blight',
+  ];
 
   final ImagePicker _picker = ImagePicker();
 
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 2),
+    )..repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
   Future<void> _pickImage(ImageSource source) async {
+    if (!kIsWeb) {
+      PermissionStatus status;
+      if (source == ImageSource.camera) {
+        status = await Permission.camera.request();
+      } else {
+        status = await Permission.photos.request();
+        if (status.isDenied) {
+          status = await Permission.storage.request(); 
+        }
+      }
+      
+      if (status != PermissionStatus.granted) {
+        setState(() {
+          _errorMessage = 'Permission is required to access your ${source == ImageSource.camera ? "camera" : "gallery"}.';
+        });
+        return;
+      }
+    }
+
     final XFile? pickedFile = await _picker.pickImage(
       source: source,
       imageQuality: 70,
     );
 
+    if (!mounted) return;
     if (pickedFile != null) {
+      int size = 0;
+      if (kIsWeb) {
+        final bytes = await pickedFile.readAsBytes();
+        size = bytes.length;
+      } else {
+        size = File(pickedFile.path).lengthSync();
+      }
+
       setState(() {
-        _selectedImage = File(pickedFile.path);
+        _selectedImage = pickedFile;
+        _fileSize = size;
         _searchResults = [];
         _errorMessage = '';
         _analysisResult = '';
@@ -41,7 +100,7 @@ class _ImageSearchScreenState extends State<ImageSearchScreen> {
     }
   }
 
-  Future<void> _analyzeImage(File imageFile) async {
+  Future<void> _analyzeImage(XFile imageFile) async {
     setState(() {
       _isAnalyzing = true;
       _errorMessage = '';
@@ -51,21 +110,28 @@ class _ImageSearchScreenState extends State<ImageSearchScreen> {
       final imageSearchService = Provider.of<ImageSearchService>(context, listen: false);
       final ragService = Provider.of<RAGService>(context, listen: false);
       
-      // First, analyze the image
-      final analysis = await imageSearchService.analyzeImage(imageFile);
+      // Use simulated label if selected, otherwise try filename matching
+      AnalysisResult analysis;
+      if (_simulatedLabel != null) {
+        analysis = await imageSearchService.analyzeWithLabel(imageFile, _simulatedLabel!);
+      } else {
+        analysis = await imageSearchService.analyzeImage(imageFile);
+      }
       
       setState(() {
-        _analysisResult = analysis;
+        _analysisResult = analysis.report;
       });
 
-      // Then search for relevant information
-      final results = await ragService.search(analysis);
+      // Search using specific keywords for higher accuracy
+      final results = await ragService.search(analysis.searchKeywords);
       
+      if (!mounted) return;
       setState(() {
         _searchResults = results;
         _isAnalyzing = false;
       });
     } catch (e) {
+      if (!mounted) return;
       setState(() {
         _errorMessage = 'Error analyzing image: $e';
         _isAnalyzing = false;
@@ -74,21 +140,7 @@ class _ImageSearchScreenState extends State<ImageSearchScreen> {
   }
 
   Future<void> _captureImage() async {
-    final XFile? capturedImage = await _picker.pickImage(
-      source: ImageSource.camera,
-      imageQuality: 70,
-    );
-
-    if (capturedImage != null) {
-      setState(() {
-        _selectedImage = File(capturedImage.path);
-        _searchResults = [];
-        _errorMessage = '';
-        _analysisResult = '';
-      });
-
-      await _analyzeImage(_selectedImage!);
-    }
+    _pickImage(ImageSource.camera);
   }
 
   @override
@@ -101,29 +153,114 @@ class _ImageSearchScreenState extends State<ImageSearchScreen> {
           onPressed: () => Navigator.pop(context),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            // Image Selection Section
-            _buildImageSelectionSection(),
-            
-            const SizedBox(height: 20),
-            
-            // Image Preview Section
-            _selectedImage != null ? _buildImagePreview() : Container(),
-            
-            const SizedBox(height: 20),
-            
-            // Analysis Result Section
-            _buildAnalysisResult(),
-            
-            const SizedBox(height: 20),
-            
-            // Results Section
-            Expanded(
-              child: _buildResults(),
+      body: CustomScrollView(
+        slivers: [
+          SliverPadding(
+            padding: const EdgeInsets.all(16.0),
+            sliver: SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  // Image Selection Section
+                  _buildImageSelectionSection(),
+                  
+                  if (_selectedImage != null) ...[
+                    const SizedBox(height: 24),
+                    _buildImagePreview(),
+                  ],
+                  
+                  if (_isAnalyzing || _analysisResult.isNotEmpty) ...[
+                    const SizedBox(height: 24),
+                    _buildAnalysisResultPresentation(),
+                  ],
+                  
+                  const SizedBox(height: 24),
+                ],
+              ),
             ),
+          ),
+          
+          // Results Section
+          _buildResultsSliver(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildResultsSliver() {
+    if (_isAnalyzing) {
+      return const SliverToBoxAdapter(child: LoadingIndicator());
+    }
+
+    if (_errorMessage.isNotEmpty) {
+      return SliverToBoxAdapter(
+        child: Center(
+          child: Text(
+            _errorMessage,
+            style: const TextStyle(color: Colors.red),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      );
+    }
+
+    if (_searchResults.isEmpty && _selectedImage != null) {
+      return SliverFillRemaining(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.image_search, size: 64, color: Colors.grey),
+              const SizedBox(height: 16),
+              const Text('No results found', style: TextStyle(fontSize: 18, color: Colors.black54)),
+            ],
+          ),
+        ),
+      );
+    }
+
+    if (_searchResults.isNotEmpty) {
+      return SliverPadding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        sliver: SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (context, index) {
+              if (index == 0) {
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 12),
+                  child: Text(
+                    'Results based on image analysis',
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black87,
+                    ),
+                  ),
+                );
+              }
+              final result = _searchResults[index - 1];
+              return SearchResultItem(
+                title: result['title'] ?? 'Query Result',
+                description: result['content'] ?? result['description'] ?? '',
+                category: result['category'] ?? 'General',
+                onTap: () {
+                  _showResultDetails(result);
+                },
+              );
+            },
+            childCount: _searchResults.length + 1,
+          ),
+        ),
+      );
+    }
+
+    return SliverFillRemaining(
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(Icons.image_search, size: 80, color: Colors.grey),
+            const SizedBox(height: 16),
+            const Text('No Image Selected', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black54)),
           ],
         ),
       ),
@@ -184,6 +321,41 @@ class _ImageSearchScreenState extends State<ImageSearchScreen> {
                 ),
               ],
             ),
+            
+            const SizedBox(height: 20),
+            
+            // Simulation Dropdown
+            const Divider(),
+            const SizedBox(height: 10),
+            const Text(
+              'Or Simulate Detection (for Testing)',
+              style: TextStyle(fontSize: 12, color: Colors.black54),
+            ),
+            const SizedBox(height: 8),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              decoration: BoxDecoration(
+                color: const Color(0xFFF5F5F5),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: DropdownButton<String>(
+                hint: const Text('Select a disease to simulate'),
+                value: _simulatedLabel,
+                isExpanded: true,
+                underline: Container(),
+                items: _simulatedDiseases.map((String disease) {
+                  return DropdownMenuItem<String>(
+                    value: disease,
+                    child: Text(disease, style: const TextStyle(fontSize: 14)),
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  setState(() {
+                    _simulatedLabel = value;
+                  });
+                },
+              ),
+            ),
           ],
         ),
       ),
@@ -233,254 +405,173 @@ class _ImageSearchScreenState extends State<ImageSearchScreen> {
 
   Widget _buildImagePreview() {
     return Container(
+      width: double.infinity,
+      height: 300,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
-            color: Colors.black12,
-            blurRadius: 8,
-            offset: const Offset(0, 4),
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 20,
+            offset: const Offset(0, 10),
           ),
         ],
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(24),
+        child: Stack(
+          alignment: Alignment.center,
           children: [
-            const Text(
-              'Selected Image',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: Colors.black87,
-              ),
-            ),
-            const SizedBox(height: 12),
-            Container(
-              width: double.infinity,
-              height: 200,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                image: DecorationImage(
-                  image: FileImage(_selectedImage!),
-                  fit: BoxFit.cover,
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black26,
-                    blurRadius: 8,
-                    offset: const Offset(0, 4),
-                  ),
+            if (_selectedImage != null)
+              kIsWeb 
+                ? Image.network(_selectedImage!.path, width: double.infinity, height: double.infinity, fit: BoxFit.cover)
+                : Image.file(File(_selectedImage!.path), width: double.infinity, height: double.infinity, fit: BoxFit.cover)
+            else
+              const Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.add_a_photo_outlined, size: 60, color: Colors.grey),
+                  SizedBox(height: 12),
+                  Text('Capture or Upload Crop Image', style: TextStyle(color: Colors.grey)),
                 ],
               ),
-            ),
-            const SizedBox(height: 12),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Image size: ${(_selectedImage!.lengthSync() / 1024).toStringAsFixed(2)} KB',
-                  style: const TextStyle(
-                    fontSize: 12,
-                    color: Colors.black54,
-                  ),
-                ),
-                TextButton.icon(
-                  icon: const Icon(Icons.refresh, size: 16),
-                  label: const Text('Change Image'),
-                  onPressed: () {
-                    setState(() {
-                      _selectedImage = null;
-                      _searchResults = [];
-                      _analysisResult = '';
-                      _errorMessage = '';
-                    });
-                  },
-                ),
-              ],
-            ),
+            
+            // AI SCANNING ANIMATION
+            if (_isAnalyzing)
+              _buildScanningOverlay(),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildAnalysisResult() {
+  Widget _buildScanningOverlay() {
+    return AnimatedBuilder(
+      animation: _animationController,
+      builder: (context, child) {
+        return Stack(
+          children: [
+            // Scanning Line
+            Positioned(
+              top: _animationController.value * 300,
+              left: 0,
+              right: 0,
+              child: Container(
+                height: 4,
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.greenAccent.withOpacity(0.8),
+                      blurRadius: 15,
+                      spreadRadius: 2,
+                    ),
+                  ],
+                  gradient: LinearGradient(
+                    colors: [
+                      Colors.greenAccent.withOpacity(0),
+                      Colors.greenAccent,
+                      Colors.greenAccent.withOpacity(0),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            // Translucent overlay
+            Container(color: Colors.black12),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _buildAnalysisResultPresentation() {
     if (_isAnalyzing) {
       return Container(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: const Color(0xFFF8F9FA),
-          borderRadius: BorderRadius.circular(12),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: Colors.black.withOpacity(0.05)),
         ),
         child: Row(
           children: [
-            const CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF4CAF50)),
+            const SizedBox(
+              width: 20,
+              height: 20,
+              child: CircularProgressIndicator(strokeWidth: 2, color: AppColors.primaryBlue),
             ),
             const SizedBox(width: 16),
             const Text(
-              'Analyzing image...',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                color: Colors.black87,
-              ),
+              'Artificial Intelligence Analyzing...',
+              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 13, color: AppColors.primaryBlue),
             ),
           ],
         ),
       );
     }
 
-    if (_analysisResult.isNotEmpty) {
-      return Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: const Color(0xFFF8F9FA),
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'AI Analysis Result',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: Colors.black87,
-              ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              _analysisResult,
-              style: const TextStyle(
-                fontSize: 14,
-                color: Colors.black70,
-                height: 1.5,
-              ),
-            ),
-          ],
-        ),
-      );
-    }
+    if (_analysisResult.isEmpty) return const SizedBox.shrink();
 
-    return Container();
-  }
-
-  Widget _buildResults() {
-    if (_isAnalyzing) {
-      return const LoadingIndicator();
-    }
-
-    if (_errorMessage.isNotEmpty) {
-      return Center(
-        child: Text(
-          _errorMessage,
-          style: const TextStyle(color: Colors.red),
-          textAlign: TextAlign.center,
-        ),
-      );
-    }
-
-    if (_searchResults.isEmpty && _selectedImage != null) {
-      return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(
-              Icons.image_search,
-              size: 64,
-              color: Colors.grey,
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              'No results found',
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.black54,
-              ),
-            ),
-            const SizedBox(height: 8),
-            const Text(
-              'Try uploading a different image',
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.black38,
-              ),
-            ),
-          ],
-        ),
-      );
-    }
-
-    if (_searchResults.isNotEmpty) {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 12),
-            child: Text(
-              'Results based on image analysis',
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: Colors.black87,
-              ),
-            ),
-          ),
-          Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.only(bottom: 16),
-              itemCount: _searchResults.length,
-              itemBuilder: (context, index) {
-                final result = _searchResults[index];
-                return SearchResultItem(
-                  title: result['title'] ?? 'Query Result',
-                  description: result['content'] ?? result['description'] ?? '',
-                  category: result['category'] ?? 'General',
-                  onTap: () {
-                    _showResultDetails(result);
-                  },
-                );
-              },
-            ),
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: AppColors.primaryBlue,
+        borderRadius: BorderRadius.circular(24),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.primaryBlue.withOpacity(0.3),
+            blurRadius: 15,
+            offset: const Offset(0, 8),
           ),
         ],
-      );
-    }
-
-    return Center(
+      ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Icon(
-            Icons.image_search,
-            size: 80,
-            color: Colors.grey,
+          Row(
+            children: [
+              const Icon(Icons.analytics_outlined, color: Colors.white, size: 24),
+              const SizedBox(width: 12),
+              const Text(
+                'AI ANALYSIS REPORT',
+                style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 1.5, fontSize: 12),
+              ),
+              const Spacer(),
+              _buildHealthyBadge(_analysisResult.toLowerCase().contains('healthy')),
+            ],
           ),
           const SizedBox(height: 16),
-          const Text(
-            'No Image Selected',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Colors.black54,
-            ),
-          ),
-          const SizedBox(height: 8),
-          const Text(
-            'Select an image to start analysis',
-            style: TextStyle(
-              fontSize: 14,
-              color: Colors.black38,
-            ),
+          Text(
+            _analysisResult,
+            style: const TextStyle(color: Colors.white, fontSize: 13, height: 1.6),
           ),
         ],
       ),
     );
   }
+
+  Widget _buildHealthyBadge(bool isHealthy) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+      decoration: BoxDecoration(
+        color: isHealthy ? Colors.greenAccent.withOpacity(0.2) : Colors.redAccent.withOpacity(0.2),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: isHealthy ? Colors.greenAccent : Colors.redAccent, width: 1),
+      ),
+      child: Text(
+        isHealthy ? 'HEALTHY' : 'DISEASE DETECTED',
+        style: TextStyle(
+          color: isHealthy ? Colors.greenAccent : Colors.redAccent,
+          fontSize: 9,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+  }
+
+
 
   void _showResultDetails(Map<String, dynamic> result) {
     showDialog(

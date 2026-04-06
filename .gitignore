@@ -1,0 +1,107 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# VS Code related
+.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+/coverage/
+
+# Node.js (Proxy Server)
+node_modules/
+dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm/
+
+# Environment Variables & API Keys (Security Critical)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+lib/secrets.dart
+lib/api_config.dart
+lib/config/secrets.dart
+lib/config/api_keys.dart
+proxy-server/.env
+
+# Symbolication/Obfuscation
+app.*.symbols
+app.*.map.json
+
+# Android Studio artifacts
+/android/app/debug
+/android/app/profile
+/android/app/release
+/android/local.properties
+/android/key.properties
+/android/.gradle
+/android/captures/
+/android/*.iml
+/android/app/*.iml
+
+# iOS artifacts
+/ios/.generated
+/ios/Flutter/App.framework
+/ios/Flutter/Flutter.framework
+/ios/Flutter/Generated.xcconfig
+/ios/Flutter/flutter_export_environment.sh
+/ios/Flutter/ephemeral
+/ios/ServiceDefinitions.json
+/ios/Runner/GeneratedPluginRegistrant.h
+/ios/Runner/GeneratedPluginRegistrant.m
+/ios/Pods/
+/ios/.symlinks/
+/ios/DerivedData/
+/ios/*.xcworkspace
+/ios/*.xcodeproj/xcuserdata/
+/ios/*.xcodeproj/project.xcworkspace/
+
+# macOS artifacts
+/macos/Flutter/ephemeral/
+/macos/Flutter/GeneratedPluginRegistrant.swift
+/macos/Pods/
+/macos/*.xcworkspace
+/macos/*.xcodeproj/xcuserdata/
+/macos/*.xcodeproj/project.xcworkspace/
+
+# Windows artifacts
+/windows/flutter/ephemeral/
+/windows/CMakeCache.txt
+/windows/CMakeFiles/
+/windows/out/
+/windows/build/
+/windows/x64/
+
+# Linux artifacts
+/linux/flutter/ephemeral/
+
+# Web artifacts
+.dart_tool/chrome-device/
+.dart_tool/flutter-browser/

@@ -1,0 +1,190 @@
+CropType,SoilType,Nitrogen,Phosphorus,Potassium,FertilizerName
+Rice,Black,50,73,5,SSP
+Rice,Alluvial,10,18,68,Ammonium Sulfate
+Rice,Red,122,64,54,SSP
+Rice,Laterite,52,36,78,Urea
+Rice,Loamy,56,58,54,Potassium Chloride
+Rice,Sandy,38,60,22,Ammonium Sulfate
+Rice,Clayey,73,46,90,Magnesium Sulfate
+Maize,Black,22,38,55,NPK 28-28-0
+Maize,Alluvial,44,67,83,NPK 28-28-0
+Maize,Red,98,71,19,Urea
+Maize,Laterite,22,65,53,NPK 28-28-0
+Maize,Loamy,127,63,36,SSP
+Maize,Sandy,149,85,99,MOP
+Maize,Clayey,149,30,37,Ammonium Sulfate
+Chickpea,Black,142,61,13,NPK 28-28-0
+Chickpea,Alluvial,75,60,25,DAP
+Chickpea,Red,32,76,88,Ammonium Sulfate
+Chickpea,Laterite,37,50,7,Magnesium Sulfate
+Chickpea,Loamy,40,82,13,NPK 10-26-26
+Chickpea,Sandy,125,47,35,Ammonium Sulfate
+Chickpea,Clayey,82,15,58,NPK 28-28-0
+Kidneybeans,Black,75,5,84,Ammonium Sulfate
+Kidneybeans,Alluvial,28,17,62,MOP
+Kidneybeans,Red,55,14,63,DAP
+Kidneybeans,Laterite,86,35,57,MOP
+Kidneybeans,Loamy,99,23,47,NPK 28-28-0
+Kidneybeans,Sandy,108,58,15,NPK 20-20-0
+Kidneybeans,Clayey,150,58,88,NPK 10-26-26
+Pigeonpeas,Black,146,27,49,SSP
+Pigeonpeas,Alluvial,26,27,32,NPK 20-20-0
+Pigeonpeas,Red,34,23,89,SSP
+Pigeonpeas,Laterite,75,41,92,MOP
+Pigeonpeas,Loamy,34,23,29,Magnesium Sulfate
+Pigeonpeas,Sandy,123,89,69,Potassium Chloride
+Pigeonpeas,Clayey,139,84,64,MOP
+Mothbeans,Black,33,99,16,SSP
+Mothbeans,Alluvial,37,50,47,NPK 20-20-0
+Mothbeans,Red,33,36,25,Ammonium Sulfate
+Mothbeans,Laterite,127,7,88,NPK 20-20-0
+Mothbeans,Loamy,61,89,13,NPK 20-20-0
+Mothbeans,Sandy,61,16,68,Magnesium Sulfate
+Mothbeans,Clayey,53,52,59,MOP
+Mungbean,Black,80,31,17,NPK 28-28-0
+Mungbean,Alluvial,48,80,70,NPK 10-26-26
+Mungbean,Red,86,73,60,NPK 10-26-26
+Mungbean,Laterite,142,67,24,Magnesium Sulfate
+Mungbean,Loamy,14,99,60,Potassium Chloride
+Mungbean,Sandy,81,98,82,Ammonium Sulfate
+Mungbean,Clayey,147,96,52,NPK 20-20-0
+Blackgram,Black,28,48,89,NPK 10-26-26
+Blackgram,Alluvial,98,13,55,MOP
+Blackgram,Red,106,65,35,NPK 28-28-0
+Blackgram,Laterite,126,36,73,Magnesium Sulfate
+Blackgram,Loamy,69,14,87,NPK 28-28-0
+Blackgram,Sandy,90,26,50,MOP
+Blackgram,Clayey,43,6,86,MOP
+Lentil,Black,140,21,70,Urea
+Lentil,Alluvial,109,19,13,DAP
+Lentil,Red,14,91,36,DAP
+Lentil,Laterite,134,92,100,MOP
+Lentil,Loamy,146,12,93,MOP
+Lentil,Sandy,102,86,96,Potassium Chloride
+Lentil,Clayey,124,49,53,MOP
+Pomegranate,Black,149,92,17,Magnesium Sulfate
+Pomegranate,Alluvial,104,29,91,Urea
+Pomegranate,Red,46,79,72,Potassium Chloride
+Pomegranate,Laterite,46,96,9,Ammonium Sulfate
+Pomegranate,Loamy,99,38,22,Potassium Chloride
+Pomegranate,Sandy,49,5,11,DAP
+Pomegranate,Clayey,118,23,15,Ammonium Sulfate
+Banana,Black,71,79,11,NPK 10-26-26
+Banana,Alluvial,61,15,89,MOP
+Banana,Red,102,76,36,NPK 28-28-0
+Banana,Laterite,16,6,100,SSP
+Banana,Loamy,29,27,19,Ammonium Sulfate
+Banana,Sandy,15,66,77,NPK 20-20-0
+Banana,Clayey,116,5,85,NPK 10-26-26
+Mango,Black,65,100,50,NPK 10-26-26
+Mango,Alluvial,31,52,15,Urea
+Mango,Red,22,42,38,NPK 20-20-0
+Mango,Laterite,42,73,58,MOP
+Mango,Loamy,55,65,40,Urea
+Mango,Sandy,90,69,50,Ammonium Sulfate
+Mango,Clayey,133,94,43,NPK 28-28-0
+Grapes,Black,139,64,79,NPK 10-26-26
+Grapes,Alluvial,64,15,87,Potassium Chloride
+Grapes,Red,120,61,30,Magnesium Sulfate
+Grapes,Laterite,87,49,7,Potassium Chloride
+Grapes,Loamy,37,97,49,Urea
+Grapes,Sandy,62,87,12,Magnesium Sulfate
+Grapes,Clayey,78,37,26,Magnesium Sulfate
+Watermelon,Black,93,95,61,MOP
+Watermelon,Alluvial,149,51,86,DAP
+Watermelon,Red,147,58,16,DAP
+Watermelon,Laterite,77,9,85,MOP
+Watermelon,Loamy,22,28,71,Magnesium Sulfate
+Watermelon,Sandy,136,55,27,Urea
+Watermelon,Clayey,47,62,92,Urea
+Muskmelon,Black,126,73,5,MOP
+Muskmelon,Alluvial,53,31,66,Urea
+Muskmelon,Red,95,60,10,NPK 20-20-0
+Muskmelon,Laterite,139,37,98,MOP
+Muskmelon,Loamy,103,71,30,NPK 28-28-0
+Muskmelon,Sandy,136,7,87,Ammonium Sulfate
+Muskmelon,Clayey,80,68,10,NPK 20-20-0
+Apple,Black,14,97,80,NPK 20-20-0
+Apple,Alluvial,62,51,69,Urea
+Apple,Red,50,15,22,NPK 20-20-0
+Apple,Laterite,132,44,57,Urea
+Apple,Loamy,68,65,87,NPK 20-20-0
+Apple,Sandy,144,86,66,SSP
+Apple,Clayey,135,47,78,NPK 20-20-0
+Orange,Black,96,34,81,NPK 10-26-26
+Orange,Alluvial,16,54,21,Magnesium Sulfate
+Orange,Red,78,26,71,NPK 20-20-0
+Orange,Laterite,43,40,13,NPK 28-28-0
+Orange,Loamy,149,60,55,Ammonium Sulfate
+Orange,Sandy,104,14,87,NPK 28-28-0
+Orange,Clayey,10,24,9,MOP
+Papaya,Black,66,90,27,Ammonium Sulfate
+Papaya,Alluvial,147,38,89,Urea
+Papaya,Red,127,37,28,Urea
+Papaya,Laterite,126,87,10,Urea
+Papaya,Loamy,96,17,25,Potassium Chloride
+Papaya,Sandy,88,11,77,NPK 28-28-0
+Papaya,Clayey,119,99,91,Magnesium Sulfate
+Coconut,Black,79,33,80,NPK 20-20-0
+Coconut,Alluvial,67,88,46,SSP
+Coconut,Red,102,31,16,SSP
+Coconut,Laterite,41,34,26,DAP
+Coconut,Loamy,104,13,30,DAP
+Coconut,Sandy,110,53,97,DAP
+Coconut,Clayey,18,50,27,Magnesium Sulfate
+Cotton,Black,50,26,38,SSP
+Cotton,Alluvial,38,76,77,Magnesium Sulfate
+Cotton,Red,110,37,64,Ammonium Sulfate
+Cotton,Laterite,51,88,36,NPK 10-26-26
+Cotton,Loamy,58,83,13,MOP
+Cotton,Sandy,60,40,95,NPK 28-28-0
+Cotton,Clayey,83,76,66,MOP
+Jute,Black,110,63,61,Urea
+Jute,Alluvial,63,8,95,NPK 28-28-0
+Jute,Red,103,43,9,Ammonium Sulfate
+Jute,Laterite,27,58,42,DAP
+Jute,Loamy,122,76,75,Ammonium Sulfate
+Jute,Sandy,74,94,85,Urea
+Jute,Clayey,25,67,8,NPK 10-26-26
+Coffee,Black,46,61,40,Potassium Chloride
+Coffee,Alluvial,147,32,63,DAP
+Coffee,Red,54,69,97,Ammonium Sulfate
+Coffee,Laterite,19,25,63,NPK 20-20-0
+Coffee,Loamy,22,77,68,Magnesium Sulfate
+Coffee,Sandy,41,42,95,SSP
+Coffee,Clayey,36,97,72,Ammonium Sulfate
+Sugarcane,Black,120,55,71,MOP
+Sugarcane,Alluvial,135,32,95,NPK 28-28-0
+Sugarcane,Red,21,93,99,NPK 10-26-26
+Sugarcane,Laterite,144,48,87,Ammonium Sulfate
+Sugarcane,Loamy,27,19,14,NPK 28-28-0
+Sugarcane,Sandy,93,64,34,Magnesium Sulfate
+Sugarcane,Clayey,105,69,94,DAP
+Wheat,Black,112,25,72,SSP
+Wheat,Alluvial,82,45,94,Ammonium Sulfate
+Wheat,Red,119,16,61,Potassium Chloride
+Wheat,Laterite,109,64,67,NPK 20-20-0
+Wheat,Loamy,28,27,64,DAP
+Wheat,Sandy,68,50,27,Potassium Chloride
+Wheat,Clayey,51,41,87,DAP
+Potato,Black,65,87,47,NPK 28-28-0
+Potato,Alluvial,149,93,72,Potassium Chloride
+Potato,Red,54,33,24,Urea
+Potato,Laterite,106,61,80,Potassium Chloride
+Potato,Loamy,80,21,24,MOP
+Potato,Sandy,50,47,13,NPK 10-26-26
+Potato,Clayey,24,73,84,DAP
+Tomato,Black,26,24,60,Ammonium Sulfate
+Tomato,Alluvial,126,9,10,Ammonium Sulfate
+Tomato,Red,34,8,7,NPK 20-20-0
+Tomato,Laterite,73,91,66,Magnesium Sulfate
+Tomato,Loamy,78,94,76,Ammonium Sulfate
+Tomato,Sandy,86,66,41,NPK 10-26-26
+Tomato,Clayey,51,18,71,MOP
+Onion,Black,38,55,45,Potassium Chloride
+Onion,Alluvial,90,7,79,MOP
+Onion,Red,83,90,9,Magnesium Sulfate
+Onion,Laterite,108,69,31,Ammonium Sulfate
+Onion,Loamy,22,77,17,NPK 20-20-0
+Onion,Sandy,82,87,68,NPK 28-28-0
+Onion,Clayey,65,8,40,MOP

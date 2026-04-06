@@ -1,0 +1,188 @@
+Crop,PestOrDisease,Symptoms,Treatment,OrganicControl
+Wheat,Blast (Fungal),Yellowing or spotting of Wheat leaves with specific Fungal marks.,Improve field drainage and sanitation,Organic Neem/Bio-Control
+Wheat,Blight (Fungal),Yellowing or spotting of Wheat leaves with specific Fungal marks.,Apply Neem oil spray every 7 days,Organic Neem/Bio-Control
+Wheat,Rust (Fungal),Yellowing or spotting of Wheat leaves with specific Fungal marks.,Improve field drainage and sanitation,Organic Neem/Bio-Control
+Wheat,Powdery Mildew (Fungal),Yellowing or spotting of Wheat leaves with specific Fungal marks.,Use pheromone traps for pest monitoring,Organic Neem/Bio-Control
+Wheat,Downy Mildew (Fungal),Yellowing or spotting of Wheat leaves with specific Fungal marks.,Apply Neem oil spray every 7 days,Organic Neem/Bio-Control
+Wheat,Leaf Spot (Fungal),Yellowing or spotting of Wheat leaves with specific Fungal marks.,Prune affected leaves and burn them away from the field,Organic Neem/Bio-Control
+Wheat,Aphids (Insect),Yellowing or spotting of Wheat leaves with specific Insect marks.,Apply Neem oil spray every 7 days,Organic Neem/Bio-Control
+Wheat,Stem Borer (Insect),Yellowing or spotting of Wheat leaves with specific Insect marks.,Apply Neem oil spray every 7 days,Organic Neem/Bio-Control
+Wheat,Thrips (Insect),Yellowing or spotting of Wheat leaves with specific Insect marks.,Prune affected leaves and burn them away from the field,Organic Neem/Bio-Control
+Wheat,Whiteflies (Insect),Yellowing or spotting of Wheat leaves with specific Insect marks.,Use pheromone traps for pest monitoring,Organic Neem/Bio-Control
+Wheat,Mealybug (Insect),Yellowing or spotting of Wheat leaves with specific Insect marks.,Apply Neem oil spray every 7 days,Organic Neem/Bio-Control
+Wheat,Spider Mites (Insect),Yellowing or spotting of Wheat leaves with specific Insect marks.,Improve field drainage and sanitation,Organic Neem/Bio-Control
+Wheat,Canker (Bacterial),Yellowing or spotting of Wheat leaves with specific Bacterial marks.,Spray monocrotophos 2ml/liter of water,Organic Neem/Bio-Control
+Wheat,Wilt (Bacterial),Yellowing or spotting of Wheat leaves with specific Bacterial marks.,Prune affected leaves and burn them away from the field,Organic Neem/Bio-Control
+Wheat,Soft Rot (Bacterial),Yellowing or spotting of Wheat leaves with specific Bacterial marks.,Use pheromone traps for pest monitoring,Organic Neem/Bio-Control
+Wheat,Mosaic (Viral),Yellowing or spotting of Wheat leaves with specific Viral marks.,Prune affected leaves and burn them away from the field,Removal of affected plants
+Wheat,Leaf Curl (Viral),Yellowing or spotting of Wheat leaves with specific Viral marks.,Use pheromone traps for pest monitoring,Removal of affected plants
+Rice,Blast (Fungal),Yellowing or spotting of Rice leaves with specific Fungal marks.,Use Trichoderma viride bio-fungicide,Organic Neem/Bio-Control
+Rice,Blight (Fungal),Yellowing or spotting of Rice leaves with specific Fungal marks.,Use Trichoderma viride bio-fungicide,Organic Neem/Bio-Control
+Rice,Rust (Fungal),Yellowing or spotting of Rice leaves with specific Fungal marks.,Use Trichoderma viride bio-fungicide,Organic Neem/Bio-Control
+Rice,Powdery Mildew (Fungal),Yellowing or spotting of Rice leaves with specific Fungal marks.,Apply Neem oil spray every 7 days,Organic Neem/Bio-Control
+Rice,Downy Mildew (Fungal),Yellowing or spotting of Rice leaves with specific Fungal marks.,Use Trichoderma viride bio-fungicide,Organic Neem/Bio-Control
+Rice,Leaf Spot (Fungal),Yellowing or spotting of Rice leaves with specific Fungal marks.,Use Trichoderma viride bio-fungicide,Organic Neem/Bio-Control
+Rice,Aphids (Insect),Yellowing or spotting of Rice leaves with specific Insect marks.,Use pheromone traps for pest monitoring,Organic Neem/Bio-Control
+Rice,Stem Borer (Insect),Yellowing or spotting of Rice leaves with specific Insect marks.,Use pheromone traps for pest monitoring,Organic Neem/Bio-Control
+Rice,Thrips (Insect),Yellowing or spotting of Rice leaves with specific Insect marks.,Use pheromone traps for pest monitoring,Organic Neem/Bio-Control
+Rice,Whiteflies (Insect),Yellowing or spotting of Rice leaves with specific Insect marks.,Improve field drainage and sanitation,Organic Neem/Bio-Control
+Rice,Mealybug (Insect),Yellowing or spotting of Rice leaves with specific Insect marks.,Spray monocrotophos 2ml/liter of water,Organic Neem/Bio-Control
+Rice,Spider Mites (Insect),Yellowing or spotting of Rice leaves with specific Insect marks.,Use pheromone traps for pest monitoring,Organic Neem/Bio-Control
+Rice,Canker (Bacterial),Yellowing or spotting of Rice leaves with specific Bacterial marks.,Prune affected leaves and burn them away from the field,Organic Neem/Bio-Control
+Rice,Wilt (Bacterial),Yellowing or spotting of Rice leaves with specific Bacterial marks.,Release ladybugs or other natural predators,Organic Neem/Bio-Control
+Rice,Soft Rot (Bacterial),Yellowing or spotting of Rice leaves with specific Bacterial marks.,Apply Neem oil spray every 7 days,Organic Neem/Bio-Control
+Rice,Mosaic (Viral),Yellowing or spotting of Rice leaves with specific Viral marks.,Prune affected leaves and burn them away from the field,Removal of affected plants
+Rice,Leaf Curl (Viral),Yellowing or spotting of Rice leaves with specific Viral marks.,Use pheromone traps for pest monitoring,Removal of affected plants
+Maize,Blast (Fungal),Yellowing or spotting of Maize leaves with specific Fungal marks.,Use pheromone traps for pest monitoring,Organic Neem/Bio-Control
+Maize,Blight (Fungal),Yellowing or spotting of Maize leaves with specific Fungal marks.,Prune affected leaves and burn them away from the field,Organic Neem/Bio-Control
+Maize,Rust (Fungal),Yellowing or spotting of Maize leaves with specific Fungal marks.,Improve field drainage and sanitation,Organic Neem/Bio-Control
+Maize,Powdery Mildew (Fungal),Yellowing or spotting of Maize leaves with specific Fungal marks.,Use pheromone traps for pest monitoring,Organic Neem/Bio-Control
+Maize,Downy Mildew (Fungal),Yellowing or spotting of Maize leaves with specific Fungal marks.,Prune affected leaves and burn them away from the field,Organic Neem/Bio-Control
+Maize,Leaf Spot (Fungal),Yellowing or spotting of Maize leaves with specific Fungal marks.,Use Trichoderma viride bio-fungicide,Organic Neem/Bio-Control
+Maize,Aphids (Insect),Yellowing or spotting of Maize leaves with specific Insect marks.,Spray monocrotophos 2ml/liter of water,Organic Neem/Bio-Control
+Maize,Stem Borer (Insect),Yellowing or spotting of Maize leaves with specific Insect marks.,Prune affected leaves and burn them away from the field,Organic Neem/Bio-Control
+Maize,Thrips (Insect),Yellowing or spotting of Maize leaves with specific Insect marks.,Use pheromone traps for pest monitoring,Organic Neem/Bio-Control
+Maize,Whiteflies (Insect),Yellowing or spotting of Maize leaves with specific Insect marks.,Improve field drainage and sanitation,Organic Neem/Bio-Control
+Maize,Mealybug (Insect),Yellowing or spotting of Maize leaves with specific Insect marks.,Prune affected leaves and burn them away from the field,Organic Neem/Bio-Control
+Maize,Spider Mites (Insect),Yellowing or spotting of Maize leaves with specific Insect marks.,Use pheromone traps for pest monitoring,Organic Neem/Bio-Control
+Maize,Canker (Bacterial),Yellowing or spotting of Maize leaves with specific Bacterial marks.,Use Trichoderma viride bio-fungicide,Organic Neem/Bio-Control
+Maize,Wilt (Bacterial),Yellowing or spotting of Maize leaves with specific Bacterial marks.,Release ladybugs or other natural predators,Organic Neem/Bio-Control
+Maize,Soft Rot (Bacterial),Yellowing or spotting of Maize leaves with specific Bacterial marks.,Release ladybugs or other natural predators,Organic Neem/Bio-Control
+Maize,Mosaic (Viral),Yellowing or spotting of Maize leaves with specific Viral marks.,Improve field drainage and sanitation,Removal of affected plants
+Maize,Leaf Curl (Viral),Yellowing or spotting of Maize leaves with specific Viral marks.,Apply Neem oil spray every 7 days,Removal of affected plants
+Sugarcane,Blast (Fungal),Yellowing or spotting of Sugarcane leaves with specific Fungal marks.,Spray monocrotophos 2ml/liter of water,Organic Neem/Bio-Control
+Sugarcane,Blight (Fungal),Yellowing or spotting of Sugarcane leaves with specific Fungal marks.,Release ladybugs or other natural predators,Organic Neem/Bio-Control
+Sugarcane,Rust (Fungal),Yellowing or spotting of Sugarcane leaves with specific Fungal marks.,Improve field drainage and sanitation,Organic Neem/Bio-Control
+Sugarcane,Powdery Mildew (Fungal),Yellowing or spotting of Sugarcane leaves with specific Fungal marks.,Improve field drainage and sanitation,Organic Neem/Bio-Control
+Sugarcane,Downy Mildew (Fungal),Yellowing or spotting of Sugarcane leaves with specific Fungal marks.,Use Trichoderma viride bio-fungicide,Organic Neem/Bio-Control
+Sugarcane,Leaf Spot (Fungal),Yellowing or spotting of Sugarcane leaves with specific Fungal marks.,Improve field drainage and sanitation,Organic Neem/Bio-Control
+Sugarcane,Aphids (Insect),Yellowing or spotting of Sugarcane leaves with specific Insect marks.,Use Trichoderma viride bio-fungicide,Organic Neem/Bio-Control
+Sugarcane,Stem Borer (Insect),Yellowing or spotting of Sugarcane leaves with specific Insect marks.,Release ladybugs or other natural predators,Organic Neem/Bio-Control
+Sugarcane,Thrips (Insect),Yellowing or spotting of Sugarcane leaves with specific Insect marks.,Use Trichoderma viride bio-fungicide,Organic Neem/Bio-Control
+Sugarcane,Whiteflies (Insect),Yellowing or spotting of Sugarcane leaves with specific Insect marks.,Release ladybugs or other natural predators,Organic Neem/Bio-Control
+Sugarcane,Mealybug (Insect),Yellowing or spotting of Sugarcane leaves with specific Insect marks.,Use Trichoderma viride bio-fungicide,Organic Neem/Bio-Control
+Sugarcane,Spider Mites (Insect),Yellowing or spotting of Sugarcane leaves with specific Insect marks.,Use pheromone traps for pest monitoring,Organic Neem/Bio-Control
+Sugarcane,Canker (Bacterial),Yellowing or spotting of Sugarcane leaves with specific Bacterial marks.,Spray monocrotophos 2ml/liter of water,Organic Neem/Bio-Control
+Sugarcane,Wilt (Bacterial),Yellowing or spotting of Sugarcane leaves with specific Bacterial marks.,Release ladybugs or other natural predators,Organic Neem/Bio-Control
+Sugarcane,Soft Rot (Bacterial),Yellowing or spotting of Sugarcane leaves with specific Bacterial marks.,Spray monocrotophos 2ml/liter of water,Organic Neem/Bio-Control
+Sugarcane,Mosaic (Viral),Yellowing or spotting of Sugarcane leaves with specific Viral marks.,Release ladybugs or other natural predators,Removal of affected plants
+Sugarcane,Leaf Curl (Viral),Yellowing or spotting of Sugarcane leaves with specific Viral marks.,Prune affected leaves and burn them away from the field,Removal of affected plants
+Cotton,Blast (Fungal),Yellowing or spotting of Cotton leaves with specific Fungal marks.,Apply Neem oil spray every 7 days,Organic Neem/Bio-Control
+Cotton,Blight (Fungal),Yellowing or spotting of Cotton leaves with specific Fungal marks.,Apply Neem oil spray every 7 days,Organic Neem/Bio-Control
+Cotton,Rust (Fungal),Yellowing or spotting of Cotton leaves with specific Fungal marks.,Prune affected leaves and burn them away from the field,Organic Neem/Bio-Control
+Cotton,Powdery Mildew (Fungal),Yellowing or spotting of Cotton leaves with specific Fungal marks.,Apply Neem oil spray every 7 days,Organic Neem/Bio-Control
+Cotton,Downy Mildew (Fungal),Yellowing or spotting of Cotton leaves with specific Fungal marks.,Apply Neem oil spray every 7 days,Organic Neem/Bio-Control
+Cotton,Leaf Spot (Fungal),Yellowing or spotting of Cotton leaves with specific Fungal marks.,Prune affected leaves and burn them away from the field,Organic Neem/Bio-Control
+Cotton,Aphids (Insect),Yellowing or spotting of Cotton leaves with specific Insect marks.,Use Trichoderma viride bio-fungicide,Organic Neem/Bio-Control
+Cotton,Stem Borer (Insect),Yellowing or spotting of Cotton leaves with specific Insect marks.,Prune affected leaves and burn them away from the field,Organic Neem/Bio-Control
+Cotton,Thrips (Insect),Yellowing or spotting of Cotton leaves with specific Insect marks.,Use pheromone traps for pest monitoring,Organic Neem/Bio-Control
+Cotton,Whiteflies (Insect),Yellowing or spotting of Cotton leaves with specific Insect marks.,Improve field drainage and sanitation,Organic Neem/Bio-Control
+Cotton,Mealybug (Insect),Yellowing or spotting of Cotton leaves with specific Insect marks.,Spray monocrotophos 2ml/liter of water,Organic Neem/Bio-Control
+Cotton,Spider Mites (Insect),Yellowing or spotting of Cotton leaves with specific Insect marks.,Release ladybugs or other natural predators,Organic Neem/Bio-Control
+Cotton,Canker (Bacterial),Yellowing or spotting of Cotton leaves with specific Bacterial marks.,Release ladybugs or other natural predators,Organic Neem/Bio-Control
+Cotton,Wilt (Bacterial),Yellowing or spotting of Cotton leaves with specific Bacterial marks.,Prune affected leaves and burn them away from the field,Organic Neem/Bio-Control
+Cotton,Soft Rot (Bacterial),Yellowing or spotting of Cotton leaves with specific Bacterial marks.,Improve field drainage and sanitation,Organic Neem/Bio-Control
+Cotton,Mosaic (Viral),Yellowing or spotting of Cotton leaves with specific Viral marks.,Spray monocrotophos 2ml/liter of water,Removal of affected plants
+Cotton,Leaf Curl (Viral),Yellowing or spotting of Cotton leaves with specific Viral marks.,Use pheromone traps for pest monitoring,Removal of affected plants
+Potato,Blast (Fungal),Yellowing or spotting of Potato leaves with specific Fungal marks.,Release ladybugs or other natural predators,Organic Neem/Bio-Control
+Potato,Blight (Fungal),Yellowing or spotting of Potato leaves with specific Fungal marks.,Release ladybugs or other natural predators,Organic Neem/Bio-Control
+Potato,Rust (Fungal),Yellowing or spotting of Potato leaves with specific Fungal marks.,Release ladybugs or other natural predators,Organic Neem/Bio-Control
+Potato,Powdery Mildew (Fungal),Yellowing or spotting of Potato leaves with specific Fungal marks.,Prune affected leaves and burn them away from the field,Organic Neem/Bio-Control
+Potato,Downy Mildew (Fungal),Yellowing or spotting of Potato leaves with specific Fungal marks.,Prune affected leaves and burn them away from the field,Organic Neem/Bio-Control
+Potato,Leaf Spot (Fungal),Yellowing or spotting of Potato leaves with specific Fungal marks.,Apply Neem oil spray every 7 days,Organic Neem/Bio-Control
+Potato,Aphids (Insect),Yellowing or spotting of Potato leaves with specific Insect marks.,Use pheromone traps for pest monitoring,Organic Neem/Bio-Control
+Potato,Stem Borer (Insect),Yellowing or spotting of Potato leaves with specific Insect marks.,Spray monocrotophos 2ml/liter of water,Organic Neem/Bio-Control
+Potato,Thrips (Insect),Yellowing or spotting of Potato leaves with specific Insect marks.,Improve field drainage and sanitation,Organic Neem/Bio-Control
+Potato,Whiteflies (Insect),Yellowing or spotting of Potato leaves with specific Insect marks.,Prune affected leaves and burn them away from the field,Organic Neem/Bio-Control
+Potato,Mealybug (Insect),Yellowing or spotting of Potato leaves with specific Insect marks.,Use Trichoderma viride bio-fungicide,Organic Neem/Bio-Control
+Potato,Spider Mites (Insect),Yellowing or spotting of Potato leaves with specific Insect marks.,Use pheromone traps for pest monitoring,Organic Neem/Bio-Control
+Potato,Canker (Bacterial),Yellowing or spotting of Potato leaves with specific Bacterial marks.,Use Trichoderma viride bio-fungicide,Organic Neem/Bio-Control
+Potato,Wilt (Bacterial),Yellowing or spotting of Potato leaves with specific Bacterial marks.,Apply Neem oil spray every 7 days,Organic Neem/Bio-Control
+Potato,Soft Rot (Bacterial),Yellowing or spotting of Potato leaves with specific Bacterial marks.,Use pheromone traps for pest monitoring,Organic Neem/Bio-Control
+Potato,Mosaic (Viral),Yellowing or spotting of Potato leaves with specific Viral marks.,Use pheromone traps for pest monitoring,Removal of affected plants
+Potato,Leaf Curl (Viral),Yellowing or spotting of Potato leaves with specific Viral marks.,Use Trichoderma viride bio-fungicide,Removal of affected plants
+Tomato,Blast (Fungal),Yellowing or spotting of Tomato leaves with specific Fungal marks.,Prune affected leaves and burn them away from the field,Organic Neem/Bio-Control
+Tomato,Blight (Fungal),Yellowing or spotting of Tomato leaves with specific Fungal marks.,Use Trichoderma viride bio-fungicide,Organic Neem/Bio-Control
+Tomato,Rust (Fungal),Yellowing or spotting of Tomato leaves with specific Fungal marks.,Improve field drainage and sanitation,Organic Neem/Bio-Control
+Tomato,Powdery Mildew (Fungal),Yellowing or spotting of Tomato leaves with specific Fungal marks.,Improve field drainage and sanitation,Organic Neem/Bio-Control
+Tomato,Downy Mildew (Fungal),Yellowing or spotting of Tomato leaves with specific Fungal marks.,Apply Neem oil spray every 7 days,Organic Neem/Bio-Control
+Tomato,Leaf Spot (Fungal),Yellowing or spotting of Tomato leaves with specific Fungal marks.,Apply Neem oil spray every 7 days,Organic Neem/Bio-Control
+Tomato,Aphids (Insect),Yellowing or spotting of Tomato leaves with specific Insect marks.,Prune affected leaves and burn them away from the field,Organic Neem/Bio-Control
+Tomato,Stem Borer (Insect),Yellowing or spotting of Tomato leaves with specific Insect marks.,Improve field drainage and sanitation,Organic Neem/Bio-Control
+Tomato,Thrips (Insect),Yellowing or spotting of Tomato leaves with specific Insect marks.,Improve field drainage and sanitation,Organic Neem/Bio-Control
+Tomato,Whiteflies (Insect),Yellowing or spotting of Tomato leaves with specific Insect marks.,Use Trichoderma viride bio-fungicide,Organic Neem/Bio-Control
+Tomato,Mealybug (Insect),Yellowing or spotting of Tomato leaves with specific Insect marks.,Spray monocrotophos 2ml/liter of water,Organic Neem/Bio-Control
+Tomato,Spider Mites (Insect),Yellowing or spotting of Tomato leaves with specific Insect marks.,Spray monocrotophos 2ml/liter of water,Organic Neem/Bio-Control
+Tomato,Canker (Bacterial),Yellowing or spotting of Tomato leaves with specific Bacterial marks.,Release ladybugs or other natural predators,Organic Neem/Bio-Control
+Tomato,Wilt (Bacterial),Yellowing or spotting of Tomato leaves with specific Bacterial marks.,Release ladybugs or other natural predators,Organic Neem/Bio-Control
+Tomato,Soft Rot (Bacterial),Yellowing or spotting of Tomato leaves with specific Bacterial marks.,Spray monocrotophos 2ml/liter of water,Organic Neem/Bio-Control
+Tomato,Mosaic (Viral),Yellowing or spotting of Tomato leaves with specific Viral marks.,Use pheromone traps for pest monitoring,Removal of affected plants
+Tomato,Leaf Curl (Viral),Yellowing or spotting of Tomato leaves with specific Viral marks.,Release ladybugs or other natural predators,Removal of affected plants
+Onion,Blast (Fungal),Yellowing or spotting of Onion leaves with specific Fungal marks.,Use Trichoderma viride bio-fungicide,Organic Neem/Bio-Control
+Onion,Blight (Fungal),Yellowing or spotting of Onion leaves with specific Fungal marks.,Use Trichoderma viride bio-fungicide,Organic Neem/Bio-Control
+Onion,Rust (Fungal),Yellowing or spotting of Onion leaves with specific Fungal marks.,Spray monocrotophos 2ml/liter of water,Organic Neem/Bio-Control
+Onion,Powdery Mildew (Fungal),Yellowing or spotting of Onion leaves with specific Fungal marks.,Release ladybugs or other natural predators,Organic Neem/Bio-Control
+Onion,Downy Mildew (Fungal),Yellowing or spotting of Onion leaves with specific Fungal marks.,Apply Neem oil spray every 7 days,Organic Neem/Bio-Control
+Onion,Leaf Spot (Fungal),Yellowing or spotting of Onion leaves with specific Fungal marks.,Prune affected leaves and burn them away from the field,Organic Neem/Bio-Control
+Onion,Aphids (Insect),Yellowing or spotting of Onion leaves with specific Insect marks.,Use pheromone traps for pest monitoring,Organic Neem/Bio-Control
+Onion,Stem Borer (Insect),Yellowing or spotting of Onion leaves with specific Insect marks.,Spray monocrotophos 2ml/liter of water,Organic Neem/Bio-Control
+Onion,Thrips (Insect),Yellowing or spotting of Onion leaves with specific Insect marks.,Spray monocrotophos 2ml/liter of water,Organic Neem/Bio-Control
+Onion,Whiteflies (Insect),Yellowing or spotting of Onion leaves with specific Insect marks.,Prune affected leaves and burn them away from the field,Organic Neem/Bio-Control
+Onion,Mealybug (Insect),Yellowing or spotting of Onion leaves with specific Insect marks.,Use Trichoderma viride bio-fungicide,Organic Neem/Bio-Control
+Onion,Spider Mites (Insect),Yellowing or spotting of Onion leaves with specific Insect marks.,Apply Neem oil spray every 7 days,Organic Neem/Bio-Control
+Onion,Canker (Bacterial),Yellowing or spotting of Onion leaves with specific Bacterial marks.,Prune affected leaves and burn them away from the field,Organic Neem/Bio-Control
+Onion,Wilt (Bacterial),Yellowing or spotting of Onion leaves with specific Bacterial marks.,Use Trichoderma viride bio-fungicide,Organic Neem/Bio-Control
+Onion,Soft Rot (Bacterial),Yellowing or spotting of Onion leaves with specific Bacterial marks.,Improve field drainage and sanitation,Organic Neem/Bio-Control
+Onion,Mosaic (Viral),Yellowing or spotting of Onion leaves with specific Viral marks.,Prune affected leaves and burn them away from the field,Removal of affected plants
+Onion,Leaf Curl (Viral),Yellowing or spotting of Onion leaves with specific Viral marks.,Prune affected leaves and burn them away from the field,Removal of affected plants
+Mango,Blast (Fungal),Yellowing or spotting of Mango leaves with specific Fungal marks.,Apply Neem oil spray every 7 days,Organic Neem/Bio-Control
+Mango,Blight (Fungal),Yellowing or spotting of Mango leaves with specific Fungal marks.,Use Trichoderma viride bio-fungicide,Organic Neem/Bio-Control
+Mango,Rust (Fungal),Yellowing or spotting of Mango leaves with specific Fungal marks.,Release ladybugs or other natural predators,Organic Neem/Bio-Control
+Mango,Powdery Mildew (Fungal),Yellowing or spotting of Mango leaves with specific Fungal marks.,Use Trichoderma viride bio-fungicide,Organic Neem/Bio-Control
+Mango,Downy Mildew (Fungal),Yellowing or spotting of Mango leaves with specific Fungal marks.,Use Trichoderma viride bio-fungicide,Organic Neem/Bio-Control
+Mango,Leaf Spot (Fungal),Yellowing or spotting of Mango leaves with specific Fungal marks.,Apply Neem oil spray every 7 days,Organic Neem/Bio-Control
+Mango,Aphids (Insect),Yellowing or spotting of Mango leaves with specific Insect marks.,Use Trichoderma viride bio-fungicide,Organic Neem/Bio-Control
+Mango,Stem Borer (Insect),Yellowing or spotting of Mango leaves with specific Insect marks.,Apply Neem oil spray every 7 days,Organic Neem/Bio-Control
+Mango,Thrips (Insect),Yellowing or spotting of Mango leaves with specific Insect marks.,Spray monocrotophos 2ml/liter of water,Organic Neem/Bio-Control
+Mango,Whiteflies (Insect),Yellowing or spotting of Mango leaves with specific Insect marks.,Use pheromone traps for pest monitoring,Organic Neem/Bio-Control
+Mango,Mealybug (Insect),Yellowing or spotting of Mango leaves with specific Insect marks.,Release ladybugs or other natural predators,Organic Neem/Bio-Control
+Mango,Spider Mites (Insect),Yellowing or spotting of Mango leaves with specific Insect marks.,Release ladybugs or other natural predators,Organic Neem/Bio-Control
+Mango,Canker (Bacterial),Yellowing or spotting of Mango leaves with specific Bacterial marks.,Spray monocrotophos 2ml/liter of water,Organic Neem/Bio-Control
+Mango,Wilt (Bacterial),Yellowing or spotting of Mango leaves with specific Bacterial marks.,Improve field drainage and sanitation,Organic Neem/Bio-Control
+Mango,Soft Rot (Bacterial),Yellowing or spotting of Mango leaves with specific Bacterial marks.,Improve field drainage and sanitation,Organic Neem/Bio-Control
+Mango,Mosaic (Viral),Yellowing or spotting of Mango leaves with specific Viral marks.,Prune affected leaves and burn them away from the field,Removal of affected plants
+Mango,Leaf Curl (Viral),Yellowing or spotting of Mango leaves with specific Viral marks.,Improve field drainage and sanitation,Removal of affected plants
+Banana,Blast (Fungal),Yellowing or spotting of Banana leaves with specific Fungal marks.,Spray monocrotophos 2ml/liter of water,Organic Neem/Bio-Control
+Banana,Blight (Fungal),Yellowing or spotting of Banana leaves with specific Fungal marks.,Improve field drainage and sanitation,Organic Neem/Bio-Control
+Banana,Rust (Fungal),Yellowing or spotting of Banana leaves with specific Fungal marks.,Apply Neem oil spray every 7 days,Organic Neem/Bio-Control
+Banana,Powdery Mildew (Fungal),Yellowing or spotting of Banana leaves with specific Fungal marks.,Apply Neem oil spray every 7 days,Organic Neem/Bio-Control
+Banana,Downy Mildew (Fungal),Yellowing or spotting of Banana leaves with specific Fungal marks.,Apply Neem oil spray every 7 days,Organic Neem/Bio-Control
+Banana,Leaf Spot (Fungal),Yellowing or spotting of Banana leaves with specific Fungal marks.,Use pheromone traps for pest monitoring,Organic Neem/Bio-Control
+Banana,Aphids (Insect),Yellowing or spotting of Banana leaves with specific Insect marks.,Improve field drainage and sanitation,Organic Neem/Bio-Control
+Banana,Stem Borer (Insect),Yellowing or spotting of Banana leaves with specific Insect marks.,Use pheromone traps for pest monitoring,Organic Neem/Bio-Control
+Banana,Thrips (Insect),Yellowing or spotting of Banana leaves with specific Insect marks.,Apply Neem oil spray every 7 days,Organic Neem/Bio-Control
+Banana,Whiteflies (Insect),Yellowing or spotting of Banana leaves with specific Insect marks.,Use pheromone traps for pest monitoring,Organic Neem/Bio-Control
+Banana,Mealybug (Insect),Yellowing or spotting of Banana leaves with specific Insect marks.,Improve field drainage and sanitation,Organic Neem/Bio-Control
+Banana,Spider Mites (Insect),Yellowing or spotting of Banana leaves with specific Insect marks.,Prune affected leaves and burn them away from the field,Organic Neem/Bio-Control
+Banana,Canker (Bacterial),Yellowing or spotting of Banana leaves with specific Bacterial marks.,Release ladybugs or other natural predators,Organic Neem/Bio-Control
+Banana,Wilt (Bacterial),Yellowing or spotting of Banana leaves with specific Bacterial marks.,Use Trichoderma viride bio-fungicide,Organic Neem/Bio-Control
+Banana,Soft Rot (Bacterial),Yellowing or spotting of Banana leaves with specific Bacterial marks.,Use Trichoderma viride bio-fungicide,Organic Neem/Bio-Control
+Banana,Mosaic (Viral),Yellowing or spotting of Banana leaves with specific Viral marks.,Improve field drainage and sanitation,Removal of affected plants
+Banana,Leaf Curl (Viral),Yellowing or spotting of Banana leaves with specific Viral marks.,Apply Neem oil spray every 7 days,Removal of affected plants
+Grapes,Blast (Fungal),Yellowing or spotting of Grapes leaves with specific Fungal marks.,Apply Neem oil spray every 7 days,Organic Neem/Bio-Control
+Grapes,Blight (Fungal),Yellowing or spotting of Grapes leaves with specific Fungal marks.,Spray monocrotophos 2ml/liter of water,Organic Neem/Bio-Control
+Grapes,Rust (Fungal),Yellowing or spotting of Grapes leaves with specific Fungal marks.,Use Trichoderma viride bio-fungicide,Organic Neem/Bio-Control
+Grapes,Powdery Mildew (Fungal),Yellowing or spotting of Grapes leaves with specific Fungal marks.,Improve field drainage and sanitation,Organic Neem/Bio-Control
+Grapes,Downy Mildew (Fungal),Yellowing or spotting of Grapes leaves with specific Fungal marks.,Use pheromone traps for pest monitoring,Organic Neem/Bio-Control
+Grapes,Leaf Spot (Fungal),Yellowing or spotting of Grapes leaves with specific Fungal marks.,Release ladybugs or other natural predators,Organic Neem/Bio-Control
+Grapes,Aphids (Insect),Yellowing or spotting of Grapes leaves with specific Insect marks.,Release ladybugs or other natural predators,Organic Neem/Bio-Control
+Grapes,Stem Borer (Insect),Yellowing or spotting of Grapes leaves with specific Insect marks.,Apply Neem oil spray every 7 days,Organic Neem/Bio-Control
+Grapes,Thrips (Insect),Yellowing or spotting of Grapes leaves with specific Insect marks.,Use Trichoderma viride bio-fungicide,Organic Neem/Bio-Control
+Grapes,Whiteflies (Insect),Yellowing or spotting of Grapes leaves with specific Insect marks.,Use pheromone traps for pest monitoring,Organic Neem/Bio-Control
+Grapes,Mealybug (Insect),Yellowing or spotting of Grapes leaves with specific Insect marks.,Use pheromone traps for pest monitoring,Organic Neem/Bio-Control
+Grapes,Spider Mites (Insect),Yellowing or spotting of Grapes leaves with specific Insect marks.,Spray monocrotophos 2ml/liter of water,Organic Neem/Bio-Control
+Grapes,Canker (Bacterial),Yellowing or spotting of Grapes leaves with specific Bacterial marks.,Spray monocrotophos 2ml/liter of water,Organic Neem/Bio-Control
+Grapes,Wilt (Bacterial),Yellowing or spotting of Grapes leaves with specific Bacterial marks.,Improve field drainage and sanitation,Organic Neem/Bio-Control
+Grapes,Soft Rot (Bacterial),Yellowing or spotting of Grapes leaves with specific Bacterial marks.,Apply Neem oil spray every 7 days,Organic Neem/Bio-Control
+Grapes,Mosaic (Viral),Yellowing or spotting of Grapes leaves with specific Viral marks.,Improve field drainage and sanitation,Removal of affected plants
+Grapes,Leaf Curl (Viral),Yellowing or spotting of Grapes leaves with specific Viral marks.,Release ladybugs or other natural predators,Removal of affected plants
